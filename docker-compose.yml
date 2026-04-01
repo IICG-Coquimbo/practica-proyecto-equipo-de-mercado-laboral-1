@@ -18,7 +18,7 @@ services:
     image: mongo:latest
     container_name: bigdata_mongodb
     ports:
-      - "27017:27017"
+      - "27017:27017" # Puerto estándar de MongoDB; puerto de conexión directo a MongoDB
     volumes:
       - mongo_data:/data/db
       
@@ -28,7 +28,7 @@ services:
     container_name: bigdata_ui
     restart: always
     ports:
-      - "8081:8081"
+      - "8081:8081" #el que abre la interfaz de mongo-express; el puerto que abre mongo-express es el 8081.
     environment:
       # Se conecta al servicio 'database' definido arriba
       - ME_CONFIG_MONGODB_URL=mongodb://database:27017/
