@@ -18,5 +18,3 @@ RUN apt-get update && apt-get install -y \
 
 # 3. Instalar librerías de Python
 RUN pip install selenium pymongo webdriver-manager
-
-USER jovyan
