@@ -1,30 +1,9 @@
-<<<<<<< HEAD
-=======
 # Imagen base con Jupyter + PySpark (Spark 3.5.x)
->>>>>>> 69d3a111fab055141859cae0becfe7f5e0d88254
 FROM jupyter/pyspark-notebook:latest
 
 USER root
 
-<<<<<<< HEAD
-# 1. Instalar dependencias base y configurar el repo de Google Chrome
-# Nota: Se han unido las l铆neas con \ correctamente
-RUN apt-get update && apt-get install -y wget gnupg2 curl && \
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-
-# 2. Instalar Google Chrome y librer铆as de soporte
-RUN apt-get update && apt-get install -y \
-    google-chrome-stable \
-    libnss3 \
-    libgbm1 \
-    libasound2 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# 3. Instalar librer铆as de Python
-RUN pip install selenium pymongo webdriver-manager
-=======
-# 1. Instalaci髇 de dependencias del sistema y entorno visual
+# 1. Instalaci贸n de dependencias del sistema y entorno visual
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
@@ -48,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# 2. Instalaci髇 de JARs: Versi髇 10.3.0 (Compatible con Spark 3.5)
+# 2. Instalaci贸n de JARs: Versi贸n 10.3.0 (Compatible con Spark 3.5)
 # Limpiamos la carpeta primero para que no queden versiones viejas chocando
 RUN rm -f /usr/local/spark/jars/mongo-spark-connector* && \
     rm -f /usr/local/spark/jars/mongodb-driver* && \
@@ -60,10 +39,10 @@ RUN wget https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_
     wget https://repo1.maven.org/maven2/org/mongodb/bson/4.11.1/bson-4.11.1.jar -P /usr/local/spark/jars/ && \
     wget https://repo1.maven.org/maven2/org/mongodb/bson-record-codec/4.11.1/bson-record-codec-4.11.1.jar -P /usr/local/spark/jars/
 
-# 3. Instalaci髇 de librer韆s Python
+# 3. Instalaci贸n de librer铆as Python
 RUN pip install selenium pymongo webdriver-manager pandas
 
-# 4. Configuraci髇 de entorno y archivos
+# 4. Configuraci贸n de entorno y archivos
 ENV DISPLAY=:99
 COPY start-vnc.sh /usr/local/bin/start-vnc.sh
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -74,7 +53,7 @@ RUN sed -i 's/\r$//' /usr/local/bin/start-vnc.sh \
 
 EXPOSE 8888 5900 6080 4040
 
-# Iniciamos como root para evitar el error de setuid de la sesi髇 anterior
+# Iniciamos como root para evitar el error de setuid de la sesi贸n anterior
 USER root
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
->>>>>>> 69d3a111fab055141859cae0becfe7f5e0d88254
+
