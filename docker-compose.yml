@@ -2,7 +2,7 @@ services:
   # Contenedor principal con Jupyter, Spark y entorno visual
   workspace:
     build: .                      # Construye la imagen usando el Dockerfile local
-    container_name: bigdata_workspace
+    container_name: bigdata_workspace1
     platform: linux/amd64
 
     ports:
@@ -27,7 +27,7 @@ services:
   # Contenedor de base de datos MongoDB
   mongodb:
     image: mongo:latest
-    container_name: bigdata_mongodb
+    container_name: bigdata_mongodb1
     platform: linux/amd64
     ports:
       - "27017:27017"             
@@ -38,7 +38,7 @@ services:
   # Interfaz web para visualizar la base de datos en puerto 8081
   admin-db:
     image: mongo-express:latest
-    container_name: bigdata_ui
+    container_name: bigdata_ui1
     restart: always
     ports:
       - "8081:8081"
