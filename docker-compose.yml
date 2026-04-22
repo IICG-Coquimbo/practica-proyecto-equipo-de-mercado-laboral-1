@@ -24,7 +24,7 @@ services:
       - "8081:8081"   # Mongo Express
     environment:
       # Reemplaza 'usuario' y 'password' por tus credenciales de Atlas
-      - ME_CONFIG_MONGODB_URL=mongodb+srv://BenjaminRamirez:benjota123@cluster0.kek1o3u.mongodb.net/?retryWrites=true&w=majority
+      - ME_CONFIG_MONGODB_URL=mongodb+srv://BenjaminRamirez:fim5S0MTo17YVRw0@cluster0.kek1o3u.mongodb.net/TiendaBigData?retryWrites=true&w=majority
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
       - VC_NODE_TLS_REJECT_UNAUTHORIZED=0
     dns:
