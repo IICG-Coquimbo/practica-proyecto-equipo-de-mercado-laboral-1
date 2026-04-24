@@ -102,8 +102,6 @@ services:
     environment:
       # --- IMPORTANTE ---
       # Reemplaza usuario, password y cluster por tus datos reales de Atlas
-      - ME_CONFIG_MONGODB_URL=mongodb+srv://profe_vannessa:Ejemplo123@cluster0.kthdyh1.mongodb.net/?retryWrites=true&w=majority
-
       # --- AGREGADO ---
       # Habilita funciones administrativas en mongo-express
       - ME_CONFIG_MONGODB_URL=mongodb+srv://usuario:password@cluster0.kthdyh1.mongodb.net/?retryWrites=true&w=majority
