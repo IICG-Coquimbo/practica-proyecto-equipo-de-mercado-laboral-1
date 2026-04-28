@@ -3,9 +3,9 @@ services:
     build: .
     container_name: bigdata_workspace_final
     ports:
-      - "8888:8888"   # Jupyter Lab
-      - "6080:6080"   # Visualizador del Scraper (VNC)
-      - "4040:4040"   # Spark UI
+      - "8880:8888"   # Jupyter Lab
+      - "6081:6080"   # Visualizador del Scraper (VNC)
+      - "4041:4040"   # Spark UI
     volumes:
       - .:/home/jovyan/work
     environment:
@@ -36,7 +36,7 @@ services:
     image: mongo-express
     container_name: BigData_Visualizer
     ports:
-      - "8081:8081"
+      - "8088:8081"
     environment:
       - ME_CONFIG_MONGODB_URL=mongodb+srv://usuario:password@cluster0.kthdyh1.mongodb.net/?retryWrites=true&w=majority
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
