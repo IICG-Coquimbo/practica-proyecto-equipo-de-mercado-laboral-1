@@ -1,26 +1,40 @@
 services:
+
+  # ─────────────────────────────────────────────
+  # Entorno principal: Jupyter + PySpark + Selenium
+  # ─────────────────────────────────────────────
   workspace:
     build: .
     container_name: BigData_workspace
     ports:
       - "8888:8888"   # Jupyter Lab
-      - "6080:6080"   # Visualizador del Scraper (VNC)
+      - "6080:6080"   # Visualizador VNC (scraping dinamico)
       - "4040:4040"   # Spark UI
     volumes:
       - .:/home/jovyan/work
     environment:
       - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=bigdata
+      - JUPYTER_ALLOW_INSECURE_WRITES=true
+      - DISPLAY=:99
+    shm_size: "2gb"
     dns:
       - 8.8.8.8
     user: root
     restart: always
+    depends_on:
+      - mongodb
     networks:
       - bigdata_net
 
-  visualizer:
-    image: mongo-express
-    container_name: BigData_Visualizer
+  # ─────────────────────────────────────────────
+  # Base de Datos NoSQL local (MongoDB)
+  # ─────────────────────────────────────────────
+  mongodb:
+    image: mongo:latest
+    container_name: BigData_MongoDB
     ports:
+<<<<<<< HEAD
       - "8081:8081"   # Mongo Express
     environment:
       - ME_CONFIG_MONGODB_URL=mongodb+srv://BenjaminRamirez:fim5S0MTo17YVRw0@cluster0.kek1o3u.mongodb.net/?retryWrites=true&w=majority
@@ -28,20 +42,50 @@ services:
       - VC_NODE_TLS_REJECT_UNAUTHORIZED=0
     dns:
       - 8.8.8.8
+=======
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+>>>>>>> f14f5bb8e49205cca17515c0c02b6b052b51ea86
     restart: always
     networks:
       - bigdata_net
 
+  # ─────────────────────────────────────────────
+  # Visualizador de MongoDB (Mongo Express)
+  # ─────────────────────────────────────────────
+  admin-db:
+    image: mongo-express
+    container_name: BigData_Visualizer
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+    dns:
+      - 8.8.8.8
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - bigdata_net
+
+  # ─────────────────────────────────────────────
+  # Gestor de archivos web
+  # ─────────────────────────────────────────────
   filebrowser:
     image: filebrowser/filebrowser
     container_name: BigData_FileBrowser
     ports:
-      - "8082:80"     # Gestor de archivos
+      - "8082:80"
     volumes:
       - .:/srv
     restart: always
     networks:
       - bigdata_net
+
+volumes:
+  mongo_data:
 
 networks:
   bigdata_net:
