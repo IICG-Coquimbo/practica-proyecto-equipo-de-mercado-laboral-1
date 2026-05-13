@@ -46,7 +46,10 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+<<<<<<< HEAD
 >>>>>>> f14f5bb8e49205cca17515c0c02b6b052b51ea86
+=======
+>>>>>>> 5c4dd5261d24b53ec121545dabbf1cdad94c0e2f
     restart: always
     networks:
       - bigdata_net
