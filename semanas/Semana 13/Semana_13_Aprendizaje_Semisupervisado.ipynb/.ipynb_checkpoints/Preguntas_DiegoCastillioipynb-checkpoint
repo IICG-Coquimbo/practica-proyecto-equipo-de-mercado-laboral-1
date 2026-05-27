@@ -1,0 +1,81 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d81aaeb5-6b77-4c48-bfcb-ee4b3280c39d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "1. ¿El problema es el algoritmo o los datos?\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1b997fb2-eb7d-4c59-8d85-fa5083bdcf26",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "R:El problema en el caso de la veterinaria son los datos\n",
+    "no el algoritmo. Pese a que la regresion lineal falle en\n",
+    "casos donde la variabilidad es alta, la regresion no falla\n",
+    "por buscar esa linea recta que relacione las variables con \n",
+    "el precio. El problema radica en que las variables \n",
+    "(Ratin y Opiniones), no tienen una relacion real con el precio,\n",
+    "productos de 1 estrella puede tener el mismo precio que el de\n",
+    "un producto 5 estrellas. Todo lo anterior hace que el modelo quede\n",
+    "con una linea practicamente plana con un R2 cerca al 0%"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3d6761c6-0b89-443e-ab30-959d122937bb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "2. ¿Cómo lo solucionarían en el mundo real sin hacer trampa? qué datos faltan\n",
+    "en el dataset original que sí determinen el precio de un producto veterinario\n",
+    "(por ejemplo: costo de la materia prima, margen de ganancia de la tienda,\n",
+    "si es importado o nacional, peso neto del empaque, etc.). O en sus datos,\n",
+    "como fué el algoritmo?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "da6c941e-5ef6-4981-94ea-b8e52a8acae1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "R:Los datos que realmente determinan el precio de\n",
+    "un producto y que faltan en el dataset son: Tipo de ingrediente, tamaño, gama de marca,\n",
+    "costo base, costo de distribucion, % de rentabilidad, canal de venta, etc. Con variables\n",
+    "de ese tipo, que tienen relacion con el precio final, el R2 subiria de manera significativa."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
