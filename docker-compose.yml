@@ -1,102 +1,83 @@
+version: '3.8'
+
 services:
-  # Contenedor principal con Jupyter, Spark y entorno visual
+  # 1. Entorno principal: Jupyter + PySpark + Selenium
   workspace:
-    build: .                      # Construye la imagen usando el Dockerfile local
-    container_name: bigdata_workspace
+    build: .
+    container_name: BigData_workspace
     platform: linux/amd64
-
     ports:
-      - "8888:8888"               # Jupyter Lab
-      - "4040:4040"               # Interfaz web de Spark
-      - "5900:5900"               # Acceso VNC al escritorio
-      - "6080:6080"               # Acceso noVNC desde navegador
-
+      - "8888:8888"   # Jupyter Lab
+      - "6080:6080"   # Visualizador VNC (scraping dinámico)
+      - "5900:5900"   # Acceso VNC directo
+      - "4040:4040"   # Spark UI
     volumes:
-      - .:/home/jovyan/work       # Monta la carpeta del proyecto dentro del contenedor
-
+      - .:/home/jovyan/work
     environment:
-      - JUPYTER_TOKEN=            # Desactiva token de acceso
-      - JUPYTER_PASSWORD=         # Desactiva contraseña
-      - JUPYTER_ALLOW_INSECURE_WRITES=true  # Permite escritura en volúmenes montados
-      - DISPLAY=:99               # Pantalla virtual usada por el entorno gráfico
-      - JUPYTER_ENABLE_LAB=yes    # Fuerza el uso de JupyterLab de forma explícita
-
-    shm_size: "2gb"               # Evita fallos del navegador por poca memoria compartida
-
-    depends_on:
-      - database
-      - admin-db
-      - admin-db-atlas            # Espera al visualizador de Atlas
-
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=bigdata     # Mantenemos la seguridad de tu archivo
+      - JUPYTER_ALLOW_INSECURE_WRITES=true
+      - DISPLAY=:99
+    shm_size: "2gb"
     dns:
-      - 8.8.8.8                   # DNS de Google para resolver nombres de Atlas
-
+      - 8.8.8.8
+    user: root
     restart: always
+    depends_on:
+      - mongodb
+      - admin-db
+      - admin-db-atlas
     networks:
       - bigdata_net
 
-  # Contenedor de base de datos MongoDB LOCAL
-  database:
+  # 2. Base de Datos NoSQL local (MongoDB)
+  mongodb:
     image: mongo:latest
-    container_name: bigdata_mongodb
-    platform: linux/amd64
+    container_name: BigData_MongoDB
     ports:
-      - "27017:27017"             # Puerto de MongoDB local
+      - "27017:27017"
     volumes:
-      - mongo_data:/data/db       # Guarda los datos de forma persistente
+      - mongo_data:/data/db
     restart: always
     networks:
       - bigdata_net
 
-  # Interfaz web para visualizar la base de datos LOCAL en puerto 8081
+  # 3. Visualizador de MongoDB (Local)
   admin-db:
     image: mongo-express:latest
-    container_name: bigdata_ui_local
-    restart: always
+    container_name: BigData_Visualizer_Local
     ports:
       - "8081:8081"
     environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://database:27017/
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-    depends_on:
-      - database
-    networks:
-      - bigdata_net
-
-  # Interfaz web para visualizar MongoDB Atlas en puerto 8082
-  admin-db-atlas:
-    image: mongo-express:latest
-    container_name: bigdata_ui_atlas
-    restart: always
-    ports:
-      - "8082:8081"
-    environment:
-      # REEMPLAZA ESTOS DATOS POR LOS TUYOS REALES DE ATLAS
-      - ME_CONFIG_MONGODB_URL=mongodb+srv://usuario:password@cluster0.kthdyh1.mongodb.net/?retryWrites=true&w=majority
+      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
     dns:
       - 8.8.8.8
-    networks:
-      - bigdata_net
-
-  # Explorador de archivos del proyecto desde el navegador
-  filebrowser:
-    image: filebrowser/filebrowser
-    container_name: bigdata_filebrowser
     restart: always
-    ports:
-      - "8083:80"
-    volumes:
-      - .:/srv
+    depends_on:
+      - mongodb
     networks:
       - bigdata_net
 
-# Volumen persistente para MongoDB LOCAL
+  # 4. Visualizador de MongoDB (Atlas en la nube)
+  admin-db-atlas:
+    image: mongo-express:latest
+    container_name: BigData_Visualizer_Atlas
+    ports:
+      - "8082:8081"
+    environment:
+      # Conexión configurada exactamente para tu clúster
+      - ME_CONFIG_MONGODB_URL=mongodb+srv://BenjaminRamirez:[TU_PASSWORD_AQUI]@cluster0.kek1o3u.mongodb.net/Proyecto_Bigdata?retryWrites=true&w=majority
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+    dns:
+      - 8.8.8.8
+    restart: always
+    networks:
+      - bigdata_net
+
 volumes:
   mongo_data:
 
-# Red personalizada para comunicación entre contenedores
 networks:
   bigdata_net:
     driver: bridge
-    name: BigData_Network_UCN
