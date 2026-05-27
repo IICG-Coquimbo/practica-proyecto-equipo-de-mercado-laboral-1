@@ -3,6 +3,38 @@
   {
    "cell_type": "code",
    "execution_count": null,
+   "id": "09897690-f40f-4461-bdc0-59189a9ea4d9",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9fa4fc32-54ce-49d7-82fb-771412293d33",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "65f3733c-8398-4860-87fc-83b82abe80b2",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dabf5008-9f9e-488d-9a27-8d344afc6ec9",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
    "id": "d81aaeb5-6b77-4c48-bfcb-ee4b3280c39d",
    "metadata": {},
    "outputs": [],
@@ -26,7 +58,7 @@
     "(Ratin y Opiniones), no tienen una relacion real con el precio,\n",
     "productos de 1 estrella puede tener el mismo precio que el de\n",
     "un producto 5 estrellas. Todo lo anterior hace que el modelo quede\n",
-    "con una linea practicamente plana con un R2 cerca al 0%"
+    "con una linea practicamente plana con un R2 cerca al 0%\n"
    ]
   },
   {
@@ -40,7 +72,7 @@
     "en el dataset original que sí determinen el precio de un producto veterinario\n",
     "(por ejemplo: costo de la materia prima, margen de ganancia de la tienda,\n",
     "si es importado o nacional, peso neto del empaque, etc.). O en sus datos,\n",
-    "como fué el algoritmo?"
+    "como fué el algoritmo?\n"
    ]
   },
   {
