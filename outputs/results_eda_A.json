@@ -1,0 +1,47 @@
+{
+  "titulo": "EDA — Análisis Multivariado",
+  "hallazgos": [
+    {
+      "seccion": "Análisis 1: Modalidad por Categoría",
+      "pregunta": "¿Las categorías TI tienen más trabajo remoto?",
+      "resultado": {
+        "QA / Testing": 0.255,
+        "Data / BI": 0.246,
+        "DevOps / Cloud": 0.237,
+        "Desarrollo / Dev": 0.175,
+        "Ingeniería Civil": 0.154
+      }
+    },
+    {
+      "seccion": "Análisis 2: Horario por Categoría",
+      "pregunta": "¿El Part time es más común en alguna categoría?",
+      "resultado": {
+        "Salud": 0.094,
+        "Ventas / Comercial": 0.026,
+        "Educación": 0.022,
+        "Otros": 0.016,
+        "TI General": 0.015
+      }
+    },
+    {
+      "seccion": "Análisis 3: Seniority vs Modalidad",
+      "pregunta": "¿Los seniors acceden más al trabajo remoto?",
+      "resultado": {
+        "Junior": 0.067,
+        "Semi-Senior": 0.5,
+        "Senior": 0.071
+      }
+    },
+    {
+      "seccion": "Heatmap de correlación con es_ti",
+      "pregunta": "¿Qué variables se correlacionan más con es_ti?",
+      "resultado": "Ver imagen: plot_heatmap_correlacion_Y.png"
+    }
+  ],
+  "plots": [
+    "plot_modalidad_por_categoria.png",
+    "plot_horario_por_categoria.png",
+    "plot_seniority_vs_modalidad.png",
+    "plot_heatmap_correlacion_Y.png"
+  ]
+}

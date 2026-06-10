@@ -158,7 +158,6 @@ def ejecutar_extraccionD():
                             "fecha_publicacion" : fecha_publicacion,
                             "fecha_captura"     : time.strftime("%Y-%m-%d %H:%M:%S"),
                             "descripcion"       : descripcion,
-                            "categoria"         : categoria_nombre,
                             "grupo"             : NOMBRE_GRUPO
                         }
                         datos_finales.append(registro)

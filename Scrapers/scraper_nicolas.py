@@ -66,14 +66,14 @@ def ejecutar_extraccion_nicolas(meta=500):
 
                             # Construcción del registro con etiquetas estandarizadas para Big Data
                             datos_finales.append({
-                                "Titulo de Cargo": titulo,
-                                "Empresa": "Empresa Destacada",
-                                "Pais": "Chile",
-                                "Fecha de Captura": "2026-03-01 " + time.strftime("%H:%M:%S"),
-                                "Descripcion": f"Oferta para el area de {rubro}",
-                                "Modalidad": modalidad,
-                                "Tipo de Horario": tipo_horario,
-                                "Fecha de Publicacion": "Reciente",
+                                "titulo_cargo": titulo,
+                                "empresa": "Empresa Destacada",
+                                "pais": "Chile",
+                                "fecha_captura": time.strftime("%Y-%m-%d %H:%M:%S"),
+                                "descripcion": f"Oferta para el area de {rubro}",
+                                "modalidad": modalidad,
+                                "tipo_horario": tipo_horario,
+                                "fecha_publicacion": "Reciente",
                                 "grupo": NOMBRE_GRUPO # ETIQUETA REQUERIDA POR CAPÍTULO 8
                             })
                             
