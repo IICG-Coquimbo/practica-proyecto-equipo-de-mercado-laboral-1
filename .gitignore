@@ -1,17 +1,14 @@
-# Jupyter
-.ipynb_checkpoints/
+# Credenciales — nunca subir
+.env
 
 # Python
 __pycache__/
 *.pyc
+*.pyo
 
-# Entornos virtuales
-.venv/
-env/
+# Jupyter
+.ipynb_checkpoints/
 
-# Archivos del sistema
+# Sistema
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
