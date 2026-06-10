@@ -7,34 +7,34 @@
   ],
   "kmeans": {
     "k_optimo": 3,
-    "inercia": 4364.6,
-    "silhouette": 0.738,
+    "inercia": 3954.88,
+    "silhouette": 0.596,
     "perfil_clusters": {
       "largo_descripcion": {
-        "0": 96.877,
-        "1": 115.34,
-        "2": 94.017
+        "0": 121.081,
+        "1": 112.912,
+        "2": 89.642
       },
       "es_remoto": {
-        "0": 0.313,
+        "0": 0.0,
         "1": 0.0,
         "2": 1.0
       },
       "es_ti": {
         "0": 1.0,
         "1": 0.0,
-        "2": 0.0
+        "2": 0.504
       }
     }
   },
   "dbscan": {
-    "n_clusters": 6,
-    "n_ruido": 3
+    "n_clusters": 5,
+    "n_ruido": 6
   },
   "variable_Y": {
     "nombre": "es_ti",
     "tipo": "booleano",
-    "pct_positivos": 5.2,
+    "pct_positivos": 26.9,
     "algoritmos_hito3": [
       "Regresión Logística",
       "Random Forest"
