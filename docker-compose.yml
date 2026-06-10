@@ -1,21 +1,23 @@
-version: '3.8'
-
 services:
-  # 1. Entorno principal: Jupyter + PySpark + Selenium
+
+  # ─────────────────────────────────────────────
+  # Entorno principal: Jupyter + PySpark + Selenium
+  # ─────────────────────────────────────────────
   workspace:
     build: .
     container_name: BigData_workspace
-    platform: linux/amd64
     ports:
+      - "8501:8501" # Acceso a Streamlite
       - "8888:8888"   # Jupyter Lab
-      - "6080:6080"   # Visualizador VNC (scraping dinámico)
-      - "5900:5900"   # Acceso VNC directo
+      - "6080:6080"   # Visualizador VNC (scraping dinamico)
       - "4040:4040"   # Spark UI
     volumes:
       - .:/home/jovyan/work
+    env_file:
+      - .env          # NUEVO: Inyectamos las credenciales de Atlas al entorno de Python
     environment:
       - JUPYTER_ENABLE_LAB=yes
-      - JUPYTER_TOKEN=bigdata     # Mantenemos la seguridad de tu archivo
+      - JUPYTER_TOKEN=bigdata
       - JUPYTER_ALLOW_INSECURE_WRITES=true
       - DISPLAY=:99
     shm_size: "2gb"
@@ -23,61 +25,48 @@ services:
       - 8.8.8.8
     user: root
     restart: always
-    depends_on:
-      - mongodb
-      - admin-db
-      - admin-db-atlas
+    # ELIMINADO: depends_on: mongodb (porque ya no existe localmente)
     networks:
       - bigdata_net
 
-  # 2. Base de Datos NoSQL local (MongoDB)
-  mongodb:
-    image: mongo:latest
-    container_name: BigData_MongoDB
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    restart: always
-    networks:
-      - bigdata_net
-
-  # 3. Visualizador de MongoDB (Local)
+  # ─────────────────────────────────────────────
+  # Visualizador de MongoDB (Mongo Express conectado a Atlas)
+  # ─────────────────────────────────────────────
   admin-db:
-    image: mongo-express:latest
-    container_name: BigData_Visualizer_Local
+    image: mongo-express
+    container_name: BigData_Visualizer
     ports:
       - "8081:8081"
+    env_file:
+      - .env          # NUEVO: Mongo Express también necesita leer el .env
     environment:
-      - ME_CONFIG_MONGODB_URL=mongodb://mongodb:27017/
+      # NUEVO: Llama dinámicamente a la clave MONGO_URI que vive en tu archivo .env
+      - ME_CONFIG_MONGODB_URL=${MONGO_URI}
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
     dns:
       - 8.8.8.8
     restart: always
-    depends_on:
-      - mongodb
+    # ELIMINADO: depends_on: mongodb
     networks:
       - bigdata_net
 
-  # 4. Visualizador de MongoDB (Atlas en la nube)
-  admin-db-atlas:
-    image: mongo-express:latest
-    container_name: BigData_Visualizer_Atlas
+  # ─────────────────────────────────────────────
+  # Gestor de archivos web
+  # ─────────────────────────────────────────────
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: BigData_FileBrowser
     ports:
-      - "8082:8081"
-    environment:
-      # Conexión configurada exactamente para tu clúster
-      - ME_CONFIG_MONGODB_URL=mongodb+srv://BenjaminRamirez:[TU_PASSWORD_AQUI]@cluster0.kek1o3u.mongodb.net/Proyecto_Bigdata?retryWrites=true&w=majority
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-    dns:
-      - 8.8.8.8
+      - "8082:80"
+    volumes:
+      - .:/srv
     restart: always
     networks:
       - bigdata_net
-
-volumes:
-  mongo_data:
 
 networks:
   bigdata_net:
     driver: bridge
+    name: BigData_Network_UCN
+
+# ELIMINADO: La sección "volumes: mongo_data" desaparece por completo.

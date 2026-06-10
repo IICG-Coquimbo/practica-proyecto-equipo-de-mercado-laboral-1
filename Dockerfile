@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
 # 2. Instalamos Google Chrome (compatible con webdriver-manager automatico)
 RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
     && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" \
@@ -34,6 +35,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
         beautifulsoup4 \
         lxml
 
+RUN pip install --no-cache-dir streamlit seaborn openpyxl
+        
 # 4. Conectores Spark-MongoDB
 RUN wget https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/10.4.0/mongo-spark-connector_2.12-10.4.0.jar \
         -P /usr/local/spark/jars/ \

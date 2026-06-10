@@ -1,0 +1,33 @@
+{
+  "titulo": "EDA — Hipótesis",
+  "pregunta_investigacion": "¿Qué características permiten predecir si una oferta pertenece al área TI?",
+  "hipotesis": [
+    {
+      "id": "H3",
+      "enunciado": "Las ofertas TI tienen descripciones más largas que las no TI",
+      "media_TI": 96.9,
+      "media_no_TI": 114.3,
+      "diferencia": -17.4,
+      "conclusion": "NO CONFIRMADA",
+      "plot": "plot_h3_largo_descripcion.png"
+    },
+    {
+      "id": "H4",
+      "enunciado": "El Full Time predomina en ambos grupos pero en distinta proporción",
+      "pct_ofertas_TI": 5.2,
+      "conclusion": "Ver distribución en el gráfico",
+      "plot": "plot_h4_horario_ti.png"
+    }
+  ],
+  "variable_Y": {
+    "nombre": "es_ti",
+    "tipo": "booleano",
+    "descripcion": "Indica si la oferta pertenece al sector TI",
+    "pct_positivos": 5.2
+  },
+  "plots": [
+    "plot_h3_largo_descripcion.png",
+    "plot_h4_horario_ti.png",
+    "plot_resumen_hipotesis.png"
+  ]
+}

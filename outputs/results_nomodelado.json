@@ -1,0 +1,48 @@
+{
+  "titulo": "Modelado No Supervisado",
+  "algoritmos": [
+    "K-Means",
+    "DBSCAN",
+    "PCA"
+  ],
+  "kmeans": {
+    "k_optimo": 3,
+    "inercia": 4364.6,
+    "silhouette": 0.738,
+    "perfil_clusters": {
+      "largo_descripcion": {
+        "0": 96.877,
+        "1": 115.34,
+        "2": 94.017
+      },
+      "es_remoto": {
+        "0": 0.313,
+        "1": 0.0,
+        "2": 1.0
+      },
+      "es_ti": {
+        "0": 1.0,
+        "1": 0.0,
+        "2": 0.0
+      }
+    }
+  },
+  "dbscan": {
+    "n_clusters": 6,
+    "n_ruido": 3
+  },
+  "variable_Y": {
+    "nombre": "es_ti",
+    "tipo": "booleano",
+    "pct_positivos": 5.2,
+    "algoritmos_hito3": [
+      "Regresión Logística",
+      "Random Forest"
+    ]
+  },
+  "plots": [
+    "plot_kmeans_codo.png",
+    "plot_kmeans_pca.png",
+    "plot_dbscan_pca.png"
+  ]
+}
