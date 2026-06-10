@@ -7,6 +7,7 @@ services:
     build: .
     container_name: BigData_workspace
     ports:
+      - "8501:8501" # Acceso a Streamlite
       - "8888:8888"   # Jupyter Lab
       - "6080:6080"   # Visualizador VNC (scraping dinamico)
       - "4040:4040"   # Spark UI
