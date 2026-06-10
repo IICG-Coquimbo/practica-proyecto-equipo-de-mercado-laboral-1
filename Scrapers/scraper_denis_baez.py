@@ -244,8 +244,6 @@ def ejecutar_extraccion():
                             "modalidad"        : modalidad,
                             "tipo_horario"     : tipo_horario,
                             "fecha_publicacion": fecha_publicacion,
-                            "categoria"        : categoria_nombre,
-                            "url_oferta"       : url_oferta,
                             "grupo"            : NOMBRE_GRUPO,
                         }
                         datos_finales.append(registro)

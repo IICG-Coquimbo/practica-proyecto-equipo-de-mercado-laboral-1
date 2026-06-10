@@ -19,7 +19,7 @@ def ejecutar_scraping_firstjob():
     # ================================================
     # CONFIGURACION
     # ================================================
-    NOMBRE_INTEGRANTE = "Sofia-Urquieta"
+    NOMBRE_GRUPO = "Sofia-Urquieta"
     META_DATOS        = 500
     # ================================================
 
@@ -47,7 +47,7 @@ def ejecutar_scraping_firstjob():
         driver.set_page_load_timeout(30)
 
         pagina = 1
-        print(f"Iniciando recoleccion para {NOMBRE_INTEGRANTE}...")
+        print(f"Iniciando recoleccion para {NOMBRE_GRUPO}...")
 
         while len(datos_finales) < META_DATOS:
             url = f"https://firstjob.me/ofertas?page={pagina}"
@@ -126,17 +126,15 @@ def ejecutar_scraping_firstjob():
                         descripcion = "No disponible en listado"
 
                     registro = {
-                        "Titulo de Cargo"      : titulo_cargo,
-                        "Empresa"              : empresa,
-                        "Pais"                 : "Chile",
-                        "Fecha de Captura"     : time.strftime("%d/%m/%Y"),
-                        "Descripcion"          : descripcion,
-                        "Modalidad"            : modalidad,
-                        "Tipo de Horario"      : "Jornada Completa",
-                        "Fecha de Publicacion" : time.strftime("%d/%m/%Y"),
-                        "Ciudad"               : ciudad,
-                        "Integrante"           : NOMBRE_INTEGRANTE,
-                        "URL_Oferta"           : link,
+                        "titulo_cargo"      : titulo_cargo,
+                        "empresa"              : empresa,
+                        "pais"                 : "Chile",
+                        "fecha_captura"     : time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "descripcion"          : descripcion,
+                        "modalidad"            : modalidad,
+                        "tipo_horario"      : "Full time",
+                        "fecha_publicacion" : time.strftime("%Y-%m-%d"),
+                        "grupo"           : NOMBRE_GRUPO,
                     }
 
                     datos_finales.append(registro)
