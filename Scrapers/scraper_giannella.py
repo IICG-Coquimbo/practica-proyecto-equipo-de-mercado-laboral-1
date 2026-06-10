@@ -160,14 +160,15 @@ def extraer_empleos(
                             fecha_publicacion = "Reciente"
 
                         registro = {
-                            "Titulo de Cargo"      : titulo_cargo,
-                            "Empresa"              : empresa,
-                            "Pais"                 : "Chile",
-                            "Fecha de Captura"     : "2026-03-01 " + time.strftime("%H:%M:%S"),
-                            "Descripcion"          : descripcion,
-                            "Modalidad"            : modalidad,
-                            "Tipo de Horario"      : tipo_horario,
-                            "Fecha de Publicacion" : fecha_publicacion
+                            "titulo_cargo"      : titulo_cargo,
+                            "empresa"              : empresa,
+                            "pais"                 : "Chile",
+                            "fecha_captura"     : time.strftime("%Y-%m-%d %H:%M:%S"),
+                            "descripcion"          : descripcion,
+                            "modalidad"            : modalidad,
+                            "tipo_horario"      : tipo_horario,
+                            "fecha_publicacion" : fecha_publicacion,
+                            "grupo"             : nombre_grupo
                         }
 
                         datos_finales.append(registro)

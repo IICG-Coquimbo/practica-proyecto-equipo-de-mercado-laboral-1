@@ -108,14 +108,14 @@ def ejecutar_extraccion_lizette():
 
                         # SE AGREGA LA ETIQUETA "grupo" REQUERIDA POR EL CAPÍTULO 8
                         registro = {
-                            "Titulo de Cargo"      : titulo_cargo,
-                            "Empresa"              : empresa,
-                            "Pais"                 : "Chile",
-                            "Fecha de Captura"     : time.strftime("%Y-%m-%d %H:%M:%S"),
-                            "Descripcion"          : descripcion,
-                            "Modalidad"            : modalidad,
-                            "Tipo de Horario"      : tipo_horario,
-                            "Fecha de Publicacion" : fecha_publicacion,
+                            "titulo_cargo"      : titulo_cargo,
+                            "empresa"              : empresa,
+                            "pais"                 : "Chile",
+                            "fecha_captura"     : time.strftime("%Y-%m-%d %H:%M:%S"),
+                            "descripcion"          : descripcion,
+                            "modalidad"            : modalidad,
+                            "tipo_horario"      : tipo_horario,
+                            "fecha_publicacion" : fecha_publicacion,
                             "grupo"                : NOMBRE_GRUPO 
                         }
                         
