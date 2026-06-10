@@ -34,6 +34,9 @@ RUN pip install --no-cache-dir --upgrade pip && \
         beautifulsoup4 \
         lxml
 
+#Instalamos streamlit
+RUN pip install --no-cache-dir streamlit seaborn openpyxl
+
 # 4. Conectores Spark-MongoDB (conector + todas las dependencias transitivas del driver)
 #    - mongo-spark-connector : punto de entrada para Spark
 #    - bson                  : contiene org.bson.BsonValue (ClassNotFoundException si falta)
